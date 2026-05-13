@@ -82,8 +82,9 @@ nav {
 #hero {
   position: relative;
   min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 7rem 3rem 4rem;
+  display: flex;
+  align-items: center;
+  padding: 7rem 3rem 5rem;
   overflow: hidden;
 }
 
@@ -111,7 +112,12 @@ nav {
   50%      { transform: translateY(-30px) scale(1.05); }
 }
 
-.hero-inner { position: relative; z-index: 1; max-width: 900px; }
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  width: 100%;
+}
 
 .hero-tag {
   font-family: var(--mono);
@@ -125,13 +131,15 @@ nav {
 }
 
 .hero-name {
-  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-size: clamp(2.8rem, 10vw, 8rem);
   font-weight: 800;
-  line-height: .95;
+  line-height: 1;
   letter-spacing: -.03em;
   margin-bottom: 1.5rem;
   opacity: 0;
   animation: fadeUp .7s .4s forwards;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 .hero-name .accent { color: var(--accent); }
 
@@ -147,7 +155,9 @@ nav {
 }
 
 .hero-cta {
-  display: flex; gap: 1rem; flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
   opacity: 0;
   animation: fadeUp .7s .8s forwards;
 }
@@ -467,33 +477,43 @@ footer .accent { color: var(--accent); }
   .nav-links a { font-size: .7rem; }
 
   /* HERO */
-  .hero-inner { max-width: 100%; width: 100%; }
-  .hero-tag { white-space: normal; overflow-wrap: break-word; }
   #hero {
-    padding: 6rem 1.2rem 3rem;
+    padding: 5.5rem 1.4rem 4rem;
     min-height: 100svh;
+    align-items: flex-start;
+  }
+  .hero-inner {
+    max-width: 100%;
+    width: 100%;
   }
   .hero-tag {
-    font-size: .68rem;
+    font-size: .65rem;
     letter-spacing: .1em;
+    white-space: normal;
+    margin-bottom: 1rem;
   }
   .hero-name {
-    font-size: 2.8rem;
+    font-size: clamp(2.4rem, 13vw, 3.2rem);
+    line-height: 1;
     margin-bottom: 1.2rem;
-    line-height: 1.05;
-    white-space: nowrap;
   }
-  .hero-name br { display: none; }
+  .hero-name br { display: inline; }
   .hero-desc {
-    overflow-wrap: break-word;
-    word-break: break-word;
+    font-size: .82rem;
     max-width: 100%;
-    font-size: .85rem;
     margin-bottom: 2rem;
+    overflow-wrap: break-word;
   }
-  .hero-cta { flex-direction: column; gap: .8rem; }
-  .btn { width: 100%; text-align: center; padding: 1rem; }
-  .scroll-hint { left: 1.2rem; }
+  .hero-cta {
+    flex-direction: column;
+    gap: .7rem;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+    padding: .9rem 1rem;
+  }
+  .scroll-hint { left: 1.4rem; }
 
   /* SECTIONS */
   section { padding: 4rem 1.2rem; }
