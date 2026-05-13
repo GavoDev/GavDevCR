@@ -463,10 +463,12 @@ footer .accent { color: var(--accent); }
     gap: .8rem;
   }
   .nav-logo { font-size: .78rem; }
-  .nav-links { gap: .8rem; }
+  .nav-links { gap: .6rem; flex-wrap: wrap; justify-content: flex-end; }
   .nav-links a { font-size: .7rem; }
 
   /* HERO */
+  .hero-inner { max-width: 100%; width: 100%; }
+  .hero-tag { white-space: normal; overflow-wrap: break-word; }
   #hero {
     padding: 6rem 1.2rem 3rem;
     min-height: 100svh;
@@ -476,10 +478,13 @@ footer .accent { color: var(--accent); }
     letter-spacing: .1em;
   }
   .hero-name {
-    font-size: clamp(3rem, 18vw, 4.5rem);
+    font-size: 3rem;
     margin-bottom: 1.2rem;
   }
   .hero-desc {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
     font-size: .85rem;
     margin-bottom: 2rem;
   }
@@ -489,7 +494,7 @@ footer .accent { color: var(--accent); }
 
   /* SECTIONS */
   section { padding: 4rem 1.2rem; }
-  .section-title { font-size: clamp(1.8rem, 8vw, 2.5rem); margin-bottom: 2rem; }
+  .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 2rem; }
 
   /* ABOUT */
   #about { padding: 4rem 1.2rem; }
