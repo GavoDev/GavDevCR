@@ -478,9 +478,12 @@ footer .accent { color: var(--accent); }
     letter-spacing: .1em;
   }
   .hero-name {
-    font-size: 3rem;
+    font-size: 2.8rem;
     margin-bottom: 1.2rem;
+    line-height: 1.05;
+    white-space: nowrap;
   }
+  .hero-name br { display: none; }
   .hero-desc {
     overflow-wrap: break-word;
     word-break: break-word;
