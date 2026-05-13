@@ -1,0 +1,668 @@
+
+  
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GavDevCR — Android Developer</title>
+  <link rel="icon" href="Altabyte.png">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #0a0e0f;
+      --surface:  #111618;
+      --border:   #1e2d2f;
+      --accent:   #00e5a0;
+      --accent2:  #00b8ff;
+      --text:     #e8f4f0;
+      --muted:    #5a7a74;
+      --mono:     'Space Mono', monospace;
+      --sans:     'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform .1s, width .2s, height .2s, background .2s;
+    }
+    .cursor.big {
+      width: 40px; height: 40px;
+      background: transparent;
+      border: 2px solid var(--accent);
+    }
+
+    /* Grid noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,160,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,160,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 3rem;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,14,15,.7);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--accent);
+      letter-spacing: .1em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: .08em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 7rem 3rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .25;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    .hero-bg-circle.c1 {
+      width: 500px; height: 500px;
+      background: var(--accent);
+      top: -100px; right: -100px;
+    }
+    .hero-bg-circle.c2 {
+      width: 300px; height: 300px;
+      background: var(--accent2);
+      bottom: 50px; left: 10%;
+      animation-delay: -4s;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 900px; }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: .75rem;
+      letter-spacing: .18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp .6s .2s forwards;
+    }
+
+    .hero-name {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 800;
+      line-height: .95;
+      letter-spacing: -.03em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp .7s .4s forwards;
+    }
+    .hero-name .accent { color: var(--accent); }
+
+    .hero-desc {
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp .7s .6s forwards;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp .7s .8s forwards;
+    }
+    .btn {
+      font-family: var(--mono);
+      font-size: .8rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .85rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,229,160,.35);
+    }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem; left: 3rem;
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .12em;
+      display: flex; align-items: center; gap: .6rem;
+      opacity: 0;
+      animation: fadeUp .6s 1.2s forwards;
+    }
+    .scroll-hint::before {
+      content: '';
+      display: block;
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--muted));
+    }
+
+    /* ─── SECTIONS ─── */
+    section { position: relative; z-index: 1; padding: 6rem 3rem; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { max-width: 1100px; margin: 0 auto; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .about-text p {
+      font-family: var(--mono);
+      font-size: .9rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .about-text p strong { color: var(--text); }
+    .skills-list {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      margin-top: 1.5rem;
+    }
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: .72rem;
+      padding: .4rem .9rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--muted);
+      letter-spacing: .08em;
+      transition: border-color .2s, color .2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .stat-card {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 6px;
+      background: var(--surface);
+      position: relative; overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .stat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .stat-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .3s;
+    }
+    .stat-card:hover::after { transform: scaleY(1); }
+    .stat-num {
+      font-size: 2.5rem; font-weight: 800;
+      color: var(--accent); line-height: 1;
+      margin-bottom: .3rem;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--muted);
+      letter-spacing: .1em;
+    }
+
+    /* ─── APP SHOWCASE ─── */
+    #apps { background: var(--surface); }
+    .apps-inner { max-width: 1100px; margin: 0 auto; }
+    .app-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 0;
+      background: var(--bg);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .app-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,229,160,.12);
+    }
+    @media (max-width: 700px) { .app-card { grid-template-columns: 1fr; } }
+
+    .app-visual {
+      background: linear-gradient(135deg, #0a2e22 0%, #003d2e 50%, #001f18 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 3rem;
+      position: relative; overflow: hidden;
+      min-height: 280px;
+    }
+    .app-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(0,229,160,.15) 0%, transparent 70%);
+    }
+
+    /* App icon SVG-style */
+    .app-icon-wrap {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+    .app-icon {
+      width: 90px; height: 90px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 20px 50px rgba(0,229,160,.4);
+      animation: iconPulse 3s ease-in-out infinite;
+    }
+    @keyframes iconPulse {
+      0%,100% { box-shadow: 0 20px 50px rgba(0,229,160,.4); }
+      50%      { box-shadow: 0 20px 70px rgba(0,229,160,.65); }
+    }
+    .app-badge {
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .15em;
+      color: var(--accent);
+      background: rgba(0,229,160,.1);
+      border: 1px solid rgba(0,229,160,.3);
+      padding: .3rem .8rem;
+      border-radius: 20px;
+    }
+
+    .app-info { padding: 2.5rem; }
+    .app-name {
+      font-size: 2.2rem; font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+    }
+    .app-tagline {
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .app-desc {
+      font-family: var(--mono);
+      font-size: .85rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .app-features {
+      display: flex; flex-direction: column; gap: .5rem;
+      margin-bottom: 2rem;
+    }
+    .feature-item {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--muted);
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .feature-item::before {
+      content: '→';
+      color: var(--accent);
+      font-size: .7rem;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .contact-sub {
+      font-family: var(--mono);
+      font-size: .9rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .social-links {
+      display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .social-link {
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: .7rem 1.5rem;
+      border-radius: 4px;
+      transition: border-color .2s, color .2s, transform .2s;
+    }
+    .social-link:hover {
+      border-color: var(--accent); color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      position: relative; z-index: 1;
+    }
+    footer p {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+    }
+    footer .accent { color: var(--accent); }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">GavDevCR_</span>
+    <ul class="nav-links">
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#apps">Mis Apps</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <div class="hero-inner">
+      <p class="hero-tag">// Android Developer · Costa Rica 🇨🇷</p>
+      <h1 class="hero-name">
+        Gav<span class="accent">Dev</span><br>CR
+      </h1>
+      <p class="hero-desc">
+        Construyo experiencias digitales para Android.<br>
+        Código limpio, diseño funcional, impacto real.
+      </p>
+      <div class="hero-cta">
+        <a href="#apps" class="btn btn-primary">Ver mis apps</a>
+        <a href="#contact" class="btn btn-outline">Hablemos</a>
+      </div>
+    </div>
+    <div class="scroll-hint">scroll para explorar</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="reveal">
+      <p class="section-label">// 01 — sobre mí</p>
+      <h2 class="section-title">Apasionado por<br>el desarrollo móvil</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          Soy <strong>GavDevCR</strong>, desarrollador Android con sede en Costa Rica.
+          Me apasiona crear aplicaciones que resuelvan problemas reales con interfaces
+          intuitivas y código bien estructurado.
+        </p>
+        <p>
+          Creo firmemente que el <strong>software de calidad</strong> combina una
+          arquitectura sólida con una experiencia de usuario excepcional.
+          Cada línea de código que escribo tiene un propósito.
+        </p>
+        <p>
+          Actualmente enfocado en el ecosistema <strong>Android</strong>, trabajando con
+          Kotlin, Jetpack Compose y las últimas herramientas de Google para
+          construir apps modernas y escalables.
+        </p>
+        <div class="skills-list">
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">Jetpack Compose</span>
+          <span class="skill-tag">Android SDK</span>
+          <span class="skill-tag">Firebase</span>
+          <span class="skill-tag">MVVM</span>
+          <span class="skill-tag">Room DB</span>
+          <span class="skill-tag">Retrofit</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Play Store</span>
+        </div>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <div class="stat-num" data-count="1">0</div>
+          <div class="stat-label">App publicada</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="100">0</div>
+          <div class="stat-label">% dedicación</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="1">0</div>
+          <div class="stat-label">País 🇨🇷</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="∞" data-special>∞</div>
+          <div class="stat-label">Líneas por aprender</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPS -->
+  <section id="apps">
+    <div class="apps-inner">
+      <div class="reveal">
+        <p class="section-label">// 02 — mis apps</p>
+        <h2 class="section-title">Lanzado al mundo</h2>
+      </div>
+      <div class="app-card reveal">
+        <div class="app-visual">
+          <div class="app-icon-wrap">
+            <div class="app-icon">💸</div>
+            <span class="app-badge">DISPONIBLE EN PLAY STORE</span>
+          </div>
+        </div>
+        <div class="app-info">
+          <h3 class="app-name">Flujo</h3>
+          <p class="app-tagline">// Tu dinero, bajo control</p>
+          <p class="app-desc">
+            Flujo es mi primera aplicación publicada en Google Play.
+            Pensada para ayudarte a gestionar tus finanzas personales
+            de forma simple, visual y sin complicaciones.
+          </p>
+          <div class="app-features">
+            <div class="feature-item">Registro de ingresos y gastos</div>
+            <div class="feature-item">Visualización clara de tu flujo de dinero</div>
+            <div class="feature-item">Diseño limpio y fácil de usar</div>
+            <div class="feature-item">Pensada para el usuario latinoamericano</div>
+          </div>
+          <a href="#" class="btn btn-primary">Ver en Play Store</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">// 03 — contacto</p>
+      <h2 class="section-title">Trabajemos<br>juntos</h2>
+      <p class="contact-sub">
+        ¿Tenés un proyecto en mente o querés hablar sobre desarrollo Android?
+        Escribime, siempre estoy abierto a nuevas ideas.
+      </p>
+      <a href="mailto:hola@gavdevcr.com" class="btn btn-primary">hola@gavdevcr.com</a>
+      <div class="social-links">
+        <a href="#" class="social-link">GitHub</a>
+        <a href="#" class="social-link">LinkedIn</a>
+        <a href="#" class="social-link">Play Store</a>
+        <a href="#" class="social-link">Twitter / X</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span class="accent">GavDevCR</span> · Costa Rica 🇨🇷</p>
+    <p>Hecho con <span class="accent">❤</span> y mucho Kotlin</p>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .stat-card, .skill-tag').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 120);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Animated counters
+    function animateCount(el, target) {
+      if (el.dataset.special) return;
+      let current = 0;
+      const step = Math.ceil(target / 40);
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current;
+        if (current >= target) clearInterval(timer);
+      }, 30);
+    }
+    const countObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-count]').forEach(el => {
+            const target = parseInt(el.dataset.count);
+            if (!isNaN(target)) animateCount(el, target);
+          });
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stats-grid').forEach(el => countObserver.observe(el));
+
+    // Parallax hero bg circles on mouse move
+    const c1 = document.querySelector('.hero-bg-circle.c1');
+    const c2 = document.querySelector('.hero-bg-circle.c2');
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - .5) * 20;
+      const y = (e.clientY / window.innerHeight - .5) * 20;
+      c1.style.transform = `translate(${x}px, ${y}px)`;
+      c2.style.transform = `translate(${-x * .6}px, ${-y * .6}px)`;
+    });
+  </script>
+</body>
+</html>

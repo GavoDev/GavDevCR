@@ -1,0 +1,9 @@
+# app-ads.txt - Authorized Digital Sellers for Apps
+# IAB Tech Lab Spec Version 1.1
+# Developer: GavDevCR
+# Last updated: 2025
+# Reference: https://iabtechlab.com/ads-txt/
+ 
+# ─── Google AdMob ───
+google.com, pub-2948115942129282, DIRECT, f08c47fec0942fa0
+ 
