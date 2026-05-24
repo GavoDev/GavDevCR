@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cómo gestionar finanzas personales desde Android con Kotlin — GavDevCR</title>
+  <link rel="icon" href="../Altabyte.png">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --surface-color: #141414;
+      --accent-color: #00ffcc;
+      --text-main: #ffffff;
+      --text-muted: #a0a0a0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Space Mono', monospace;
+      line-height: 1.8;
+      padding: 0 20px;
+    }
+
+    /* Contenedor del Artículo */
+    .article-container {
+      max-width: 800px;
+      margin: 60px auto;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--accent-color);
+      text-decoration: none;
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+    }
+
+    .back-link:hover {
+      transform: translateX(-5px);
+    }
+
+    .meta-tags {
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .meta-info {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 20px;
+    }
+
+    /* Cuerpo del texto */
+    .article-content p {
+      margin-bottom: 25px;
+      color: #e0e0e0;
+      font-size: 1.05rem;
+    }
+
+    .article-content strong {
+      color: var(--accent-color);
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      color: var(--text-main);
+      margin: 45px 0 20px 0;
+    }
+
+    /* Bloques de código simulados / Destacados */
+    .tech-box {
+      background-color: var(--surface-color);
+      border-left: 3px solid var(--accent-color);
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .tech-box h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .tech-box p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer del artículo */
+    footer {
+      margin-top: 60px;
+      border-top: 1px solid #222;
+      padding-top: 30px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .accent {
+      color: var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+
+  <article class="article-container">
+    <a href="../index.html" class="back-link">← Volver al portafolio</a>
+
+    <header>
+      <div class="meta-tags">// Android Dev &middot; Finanzas Personales</div>
+      <h1>Cómo gestionar finanzas personales desde Android: Arquitectura, Kotlin y código limpio</h1>
+      <div class="meta-info">
+        Por <span>GavDevCR</span> &middot; Mayo 2026 &middot; Lectura de 5 min
+      </div>
+    </header>
+
+    <section class="article-content">
+      <p>
+        Llevar el control de las finanzas personales no es una tarea sencilla para la mayoría de las personas. En un entorno económico dinámico, entender con precisión hacia dónde se va cada colón o dólar requiere de herramientas que no solo sean funcionales, sino también intuitivas y sumamente accesibles. Como desarrollador de software, descubrí que la mejor manera de abordar este problema era construyendo una solución nativa diseñada específicamente para el usuario moderno.
+      </p>
+
+      <p>
+        El desarrollo de aplicaciones móviles enfocadas en la gestión financiera (Fintech de uso personal) plantea retos técnicos críticos. No se trata simplemente de pintar datos en una pantalla; requiere una gestión impecable del flujo de datos, persistencia local segura y un diseño de interfaz (*UI*) reactivo que no confunda al usuario final al momento de registrar sus transacciones diarias.
+      </p>
+
+      <h2>1. El núcleo técnico: Kotlin y Jetpack Compose</h2>
+      <p>
+        Para construir una herramienta financiera moderna, la elección del *stack* tecnológico es clave. En el desarrollo nativo de Android, la combinación de <strong>Kotlin</strong> junto con <strong>Jetpack Compose</strong> se ha convertido en el estándar de oro. Dejar atrás los antiguos archivos XML de diseño permite estructurar la interfaz de usuario de forma completamente declarativa.
+      </p>
+
+      <p>
+        Al diseñar componentes como gráficos de pastel para la distribución de gastos o listas dinámicas de ingresos, Compose permite reaccionar a los cambios de estado en tiempo real. Si un usuario introduce un nuevo gasto, el balance general y el flujo visual deben actualizarse instantáneamente sin necesidad de recargar la pantalla completa, garantizando una experiencia de usuario fluida y libre de fricciones.
+      </p>
+
+      <div class="tech-box">
+        <h3>La Arquitectura Detrás del Flujo de Datos</h3>
+        <p>
+          Utilizar el patrón arquitectónico <strong>MVVM (Model-View-ViewModel)</strong> es indispensable. Separa de forma estricta la lógica de negocio de los componentes visuales. La vista solo observa los estados expuestos por el ViewModel, asegurando que la información financiera se mantenga intacta incluso ante cambios de configuración del dispositivo, como la rotación de la pantalla.
+        </p>
+      </div>
+
+      <h2>2. Persistencia local segura con Room Database</h2>
+      <p>
+        Uno de los pilares más importantes en una aplicación de finanzas es el almacenamiento de datos. Un usuario no puede depender exclusivamente de una conexión a internet para registrar un gasto en un comercio local. La aplicación debe ser capaz de funcionar de manera **completamente offline**.
+      </p>
+
+      <p>
+        Para lograrlo, la implementación de la librería <strong>Room DB</strong> (la capa de abstracción sobre SQLite de Google) es la solución ideal. Room permite mapear las transacciones financieras directamente como objetos de Kotlin, estructurando tablas relacionales para categorías, montos, fechas y notas adjuntas. Además, el uso de *Coroutines* y *Flow* asegura que las consultas a la base de datos se ejecuten en hilos secundarios, evitando por completo cualquier tipo de congelamiento en la interfaz gráfica.
+      </p>
+
+      <h2>3. Diseño pensado en la usabilidad real</h2>
+      <p>
+        Muchas aplicaciones financieras fallan porque abruman al usuario con menús infinitos y configuraciones bancarias complejas. El enfoque óptimo para el mercado latinoamericano radica en la **simplicidad**. Un botón flotante de acceso rápido para añadir ingresos o egresos, íconos representativos para las categorías (comida, transporte, entretenimiento) y un resumen visual claro del flujo de dinero mensual son suficientes para generar un impacto real en el hábito financiero de las personas.
+      </p>
+
+      <p>
+        La ingeniería de software adquiere valor cuando resuelve un problema cotidiano de forma elegante. Aplicar código limpio, arquitecturas escalables y un diseño pulido convierte a una simple hoja de cálculo digital en una experiencia interactiva que ayuda a transformar la salud financiera de sus usuarios.
+      </p>
+    </section>
+
+    <footer>
+      <p>©<span class="accent">GavDevCR</span> · Desarrollando desde Costa Rica para el mundo.</p>
+    </footer>
+  </article>
+
+</body>
+</html>
