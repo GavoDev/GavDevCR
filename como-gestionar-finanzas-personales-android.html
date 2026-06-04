@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cómo gestionar finanzas personales desde Android con Kotlin — GavDevCR</title>
-  <link rel="icon" href="../Altabyte.png">
+  <meta name="description" content="Aprende a construir una app de finanzas personales en Android con Kotlin, Jetpack Compose, Room DB y arquitectura MVVM. Guía técnica práctica por GavDevCR." />
+  <link rel="icon" href="Altabyte.png">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
-  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2948115942129282" crossorigin="anonymous"></script>
   <style>
     :root {
       --bg-color: #0d0d0d;
@@ -15,13 +17,7 @@
       --text-main: #ffffff;
       --text-muted: #a0a0a0;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
@@ -29,13 +25,7 @@
       line-height: 1.8;
       padding: 0 20px;
     }
-
-    /* Contenedor del Artículo */
-    .article-container {
-      max-width: 800px;
-      margin: 60px auto;
-    }
-
+    .article-container { max-width: 800px; margin: 60px auto; }
     .back-link {
       display: inline-block;
       color: var(--accent-color);
@@ -44,11 +34,7 @@
       font-size: 0.9rem;
       transition: transform 0.2s;
     }
-
-    .back-link:hover {
-      transform: translateX(-5px);
-    }
-
+    .back-link:hover { transform: translateX(-5px); }
     .meta-tags {
       font-size: 0.85rem;
       color: var(--accent-color);
@@ -56,7 +42,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-
     h1 {
       font-family: 'Syne', sans-serif;
       font-size: 2.5rem;
@@ -64,7 +49,6 @@
       line-height: 1.2;
       margin-bottom: 20px;
     }
-
     .meta-info {
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -72,26 +56,24 @@
       border-bottom: 1px solid #222;
       padding-bottom: 20px;
     }
-
-    /* Cuerpo del texto */
     .article-content p {
       margin-bottom: 25px;
       color: #e0e0e0;
       font-size: 1.05rem;
     }
-
-    .article-content strong {
-      color: var(--accent-color);
-    }
-
+    .article-content strong { color: var(--accent-color); }
     h2 {
       font-family: 'Syne', sans-serif;
       font-size: 1.8rem;
       color: var(--text-main);
       margin: 45px 0 20px 0;
     }
-
-    /* Bloques de código simulados / Destacados */
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin: 35px 0 15px 0;
+    }
     .tech-box {
       background-color: var(--surface-color);
       border-left: 3px solid var(--accent-color);
@@ -99,20 +81,34 @@
       margin: 30px 0;
       border-radius: 0 8px 8px 0;
     }
-
-    .tech-box h3 {
-      font-size: 1.1rem;
+    .tech-box h3 { font-size: 1.1rem; margin-bottom: 10px; margin-top: 0; color: var(--text-main); }
+    .tech-box p { margin-bottom: 0; font-size: 0.95rem; color: var(--text-muted); }
+    .code-block {
+      background: #0a0a0a;
+      border: 1px solid #1e2d2f;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      color: #00ffcc;
+      line-height: 1.6;
+    }
+    .code-block .comment { color: #5a7a74; }
+    ul.article-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 25px 0;
+    }
+    ul.article-list li {
+      padding: 8px 0 8px 20px;
+      color: #e0e0e0;
+      font-size: 1.05rem;
+      border-left: 2px solid var(--accent-color);
       margin-bottom: 10px;
-      color: var(--text-main);
+      padding-left: 16px;
     }
-
-    .tech-box p {
-      margin-bottom: 0;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    /* Footer del artículo */
+    .ad-block { margin: 40px 0; }
     footer {
       margin-top: 60px;
       border-top: 1px solid #222;
@@ -121,24 +117,53 @@
       font-size: 0.9rem;
       color: var(--text-muted);
     }
-
-    .accent {
-      color: var(--accent-color);
+    .accent { color: var(--accent-color); }
+    .cta-box {
+      background: linear-gradient(135deg, #0a1a15, #0d2020);
+      border: 1px solid var(--accent-color);
+      border-radius: 12px;
+      padding: 30px;
+      margin: 40px 0;
+      text-align: center;
     }
+    .cta-box p { color: #e0e0e0; margin-bottom: 16px; }
+    .btn-cta {
+      display: inline-block;
+      background: var(--accent-color);
+      color: #000;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    .btn-cta:hover { opacity: 0.85; }
   </style>
 </head>
 <body>
 
   <article class="article-container">
-    <a href="../index.html" class="back-link">← Volver al portafolio</a>
+    <a href="index.html" class="back-link">← Volver al portafolio</a>
 
     <header>
-      <div class="meta-tags">// Android Dev &middot; Finanzas Personales</div>
+      <div class="meta-tags">// Android Dev &middot; Finanzas Personales &middot; Kotlin</div>
       <h1>Cómo gestionar finanzas personales desde Android: Arquitectura, Kotlin y código limpio</h1>
       <div class="meta-info">
-        Por <span>GavDevCR</span> &middot; Mayo 2026 &middot; Lectura de 5 min
+        Por <span class="accent">GavDevCR</span> &middot; Mayo 2026 &middot; Lectura de 8 min
       </div>
     </header>
+
+    <!-- AD superior (justo después del encabezado del artículo) -->
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2948115942129282"
+           data-ad-slot="AUTO"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <section class="article-content">
       <p>
@@ -146,46 +171,172 @@
       </p>
 
       <p>
-        El desarrollo de aplicaciones móviles enfocadas en la gestión financiera (Fintech de uso personal) plantea retos técnicos críticos. No se trata simplemente de pintar datos en una pantalla; requiere una gestión impecable del flujo de datos, persistencia local segura y un diseño de interfaz (*UI*) reactivo que no confunda al usuario final al momento de registrar sus transacciones diarias.
+        El desarrollo de aplicaciones móviles enfocadas en la gestión financiera plantea retos técnicos críticos. No se trata simplemente de mostrar datos en una pantalla; requiere una gestión impecable del flujo de datos, persistencia local segura y un diseño de interfaz reactivo que no confunda al usuario al momento de registrar sus transacciones diarias.
       </p>
 
       <h2>1. El núcleo técnico: Kotlin y Jetpack Compose</h2>
       <p>
-        Para construir una herramienta financiera moderna, la elección del *stack* tecnológico es clave. En el desarrollo nativo de Android, la combinación de <strong>Kotlin</strong> junto con <strong>Jetpack Compose</strong> se ha convertido en el estándar de oro. Dejar atrás los antiguos archivos XML de diseño permite estructurar la interfaz de usuario de forma completamente declarativa.
+        Para construir una herramienta financiera moderna, la elección del stack tecnológico es clave. En el desarrollo nativo de Android, la combinación de <strong>Kotlin</strong> junto con <strong>Jetpack Compose</strong> se ha convertido en el estándar de oro. Dejar atrás los antiguos archivos XML de diseño permite estructurar la interfaz de usuario de forma completamente declarativa.
       </p>
 
       <p>
-        Al diseñar componentes como gráficos de pastel para la distribución de gastos o listas dinámicas de ingresos, Compose permite reaccionar a los cambios de estado en tiempo real. Si un usuario introduce un nuevo gasto, el balance general y el flujo visual deben actualizarse instantáneamente sin necesidad de recargar la pantalla completa, garantizando una experiencia de usuario fluida y libre de fricciones.
+        Al diseñar componentes como gráficos de distribución de gastos o listas dinámicas de ingresos, Compose permite reaccionar a los cambios de estado en tiempo real. Si un usuario introduce un nuevo gasto, el balance general debe actualizarse instantáneamente sin recargar la pantalla completa, garantizando una experiencia fluida y libre de fricciones.
       </p>
+
+      <div class="code-block">
+<span class="comment">// Ejemplo: Composable que observa el estado del balance</span>
+@Composable
+fun BalanceCard(viewModel: FinanzasViewModel) {
+    val balance by viewModel.balance.collectAsState()
+
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = "Balance actual", style = MaterialTheme.typography.labelSmall)
+            Text(
+                text = "₡${balance.total}",
+                style = MaterialTheme.typography.headlineLarge,
+                color = if (balance.total >= 0) Color(0xFF00E5A0) else Color.Red
+            )
+        }
+    }
+}
+      </div>
 
       <div class="tech-box">
         <h3>La Arquitectura Detrás del Flujo de Datos</h3>
         <p>
-          Utilizar el patrón arquitectónico <strong>MVVM (Model-View-ViewModel)</strong> es indispensable. Separa de forma estricta la lógica de negocio de los componentes visuales. La vista solo observa los estados expuestos por el ViewModel, asegurando que la información financiera se mantenga intacta incluso ante cambios de configuración del dispositivo, como la rotación de la pantalla.
+          Utilizar el patrón arquitectónico <strong>MVVM (Model-View-ViewModel)</strong> es indispensable. Separa de forma estricta la lógica de negocio de los componentes visuales. La vista solo observa los estados expuestos por el ViewModel, asegurando que la información financiera se mantenga intacta incluso ante cambios de configuración del dispositivo, como la rotación de pantalla.
         </p>
       </div>
 
       <h2>2. Persistencia local segura con Room Database</h2>
       <p>
-        Uno de los pilares más importantes en una aplicación de finanzas es el almacenamiento de datos. Un usuario no puede depender exclusivamente de una conexión a internet para registrar un gasto en un comercio local. La aplicación debe ser capaz de funcionar de manera **completamente offline**.
+        Uno de los pilares más importantes en una aplicación de finanzas es el almacenamiento de datos. Un usuario no puede depender exclusivamente de una conexión a internet para registrar un gasto en un comercio local. La aplicación debe ser capaz de funcionar de manera <strong>completamente offline</strong>.
       </p>
 
       <p>
-        Para lograrlo, la implementación de la librería <strong>Room DB</strong> (la capa de abstracción sobre SQLite de Google) es la solución ideal. Room permite mapear las transacciones financieras directamente como objetos de Kotlin, estructurando tablas relacionales para categorías, montos, fechas y notas adjuntas. Además, el uso de *Coroutines* y *Flow* asegura que las consultas a la base de datos se ejecuten en hilos secundarios, evitando por completo cualquier tipo de congelamiento en la interfaz gráfica.
+        Para lograrlo, la implementación de <strong>Room DB</strong> (la capa de abstracción sobre SQLite de Google) es la solución ideal. Room permite mapear las transacciones financieras directamente como objetos de Kotlin, estructurando tablas relacionales para categorías, montos, fechas y notas.
       </p>
 
-      <h2>3. Diseño pensado en la usabilidad real</h2>
+      <div class="code-block">
+<span class="comment">// Entidad de transacción con Room</span>
+@Entity(tableName = "transacciones")
+data class Transaccion(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val monto: Double,
+    val tipo: String, <span class="comment">// "ingreso" o "gasto"</span>
+    val categoria: String,
+    val nota: String = "",
+    val fecha: Long = System.currentTimeMillis()
+)
+
+<span class="comment">// DAO para consultas con Flow (reactivo)</span>
+@Dao
+interface TransaccionDao {
+    @Query("SELECT * FROM transacciones ORDER BY fecha DESC")
+    fun getAll(): Flow&lt;List&lt;Transaccion&gt;&gt;
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(transaccion: Transaccion)
+
+    @Delete
+    suspend fun delete(transaccion: Transaccion)
+}
+      </div>
+
+      <!-- AD intermedio (mitad del artículo) -->
+      <div class="ad-block">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2948115942129282"
+             data-ad-slot="AUTO"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>3. El ViewModel como cerebro de la app</h2>
       <p>
-        Muchas aplicaciones financieras fallan porque abruman al usuario con menús infinitos y configuraciones bancarias complejas. El enfoque óptimo para el mercado latinoamericano radica en la **simplicidad**. Un botón flotante de acceso rápido para añadir ingresos o egresos, íconos representativos para las categorías (comida, transporte, entretenimiento) y un resumen visual claro del flujo de dinero mensual son suficientes para generar un impacto real en el hábito financiero de las personas.
+        El <strong>ViewModel</strong> es quien coordina todo. Consume el repositorio (que a su vez consulta Room), expone el estado a la UI mediante <code>StateFlow</code> o <code>LiveData</code>, y ejecuta las operaciones de escritura en coroutines para no bloquear el hilo principal.
       </p>
 
+      <div class="code-block">
+<span class="comment">// ViewModel que expone el balance calculado</span>
+class FinanzasViewModel(private val repo: TransaccionRepository) : ViewModel() {
+
+    val transacciones: StateFlow&lt;List&lt;Transaccion&gt;&gt; = repo.getAll()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    val balance: StateFlow&lt;Balance&gt; = transacciones.map { lista ->
+        val ingresos = lista.filter { it.tipo == "ingreso" }.sumOf { it.monto }
+        val gastos   = lista.filter { it.tipo == "gasto"   }.sumOf { it.monto }
+        Balance(ingresos = ingresos, gastos = gastos, total = ingresos - gastos)
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), Balance())
+
+    fun agregar(transaccion: Transaccion) {
+        viewModelScope.launch { repo.insert(transaccion) }
+    }
+}
+      </div>
+
+      <h2>4. Diseño pensado en la usabilidad real</h2>
       <p>
-        La ingeniería de software adquiere valor cuando resuelve un problema cotidiano de forma elegante. Aplicar código limpio, arquitecturas escalables y un diseño pulido convierte a una simple hoja de cálculo digital en una experiencia interactiva que ayuda a transformar la salud financiera de sus usuarios.
+        Muchas aplicaciones financieras fallan porque abruman al usuario con menús infinitos y configuraciones complejas. El enfoque óptimo para el mercado latinoamericano radica en la <strong>simplicidad radical</strong>. Algunos principios que aplico:
       </p>
+
+      <ul class="article-list">
+        <li>Un botón flotante (FAB) de acceso rápido para añadir ingresos o egresos en segundos</li>
+        <li>Íconos representativos para categorías: comida, transporte, entretenimiento, ahorro</li>
+        <li>Un resumen visual claro del flujo de dinero mensual (no tablas, sino gráficos)</li>
+        <li>Colores semánticos: verde para ingresos, rojo para gastos, sin ambigüedad</li>
+        <li>Modo offline completo: nada se pierde si no hay internet</li>
+      </ul>
+
+      <h2>5. Lecciones aprendidas publicando en Play Store</h2>
+      <p>
+        El proceso de llevar <strong>Flujo</strong> desde una idea hasta la Play Store me enseñó más que cualquier tutorial. Algunos puntos clave que no suelen aparecer en la documentación oficial:
+      </p>
+
+      <ul class="article-list">
+        <li><strong>Política de privacidad obligatoria</strong>: Google la exige incluso si tu app no recopila ningún dato. Necesitás una URL pública accesible.</li>
+        <li><strong>Target SDK actualizado</strong>: Google rechaza apps que no apunten al SDK mínimo requerido del año en curso.</li>
+        <li><strong>Pruebas en dispositivos reales</strong>: el emulador miente. Comportamientos de scroll, tiempos de carga y rendimiento gráfico solo se revelan en hardware real.</li>
+        <li><strong>Screenshots de alta calidad</strong>: la presentación en Play Store influye directamente en la tasa de instalación. Dedicá tiempo al diseño gráfico.</li>
+      </ul>
+
+      <div class="tech-box">
+        <h3>Conclusión: el código tiene valor cuando resuelve problemas reales</h3>
+        <p>
+          La ingeniería de software adquiere significado cuando simplifica lo que era complicado. Aplicar código limpio, arquitecturas escalables y un diseño pulido convierte una simple hoja de cálculo digital en una experiencia que transforma hábitos financieros cotidianos. Ese es el objetivo de Flujo, y el estándar con el que mido cada proyecto.
+        </p>
+      </div>
+
+      <!-- CTA a la app -->
+      <div class="cta-box">
+        <p>¿Querés probar Flujo? Ya está disponible gratis en Google Play para Android.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.avargas.flujo&pcampaignid=web_share" class="btn-cta" target="_blank" rel="noopener">Descargar Flujo en Play Store →</a>
+      </div>
+
     </section>
+
+    <!-- AD al final del artículo -->
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2948115942129282"
+           data-ad-slot="AUTO"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <footer>
       <p>©<span class="accent">GavDevCR</span> · Desarrollando desde Costa Rica para el mundo.</p>
+      <p style="margin-top: 10px;">
+        <a href="index.html" style="color: var(--accent-color); text-decoration: none;">← Volver al inicio</a>
+        &nbsp;|&nbsp;
+        <a href="arquitectura-mvvm-android-kotlin.html" style="color: var(--accent-color); text-decoration: none;">Siguiente artículo →</a>
+      </p>
     </footer>
   </article>
 
