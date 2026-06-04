@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Por qué MVVM es el estándar de oro en Android: guía práctica con Kotlin — GavDevCR</title>
+  <meta name="description" content="Aprende a implementar el patrón MVVM en Android con Kotlin: ViewModel, StateFlow, Repository y Jetpack. Guía técnica práctica con ejemplos de código reales." />
+  <link rel="icon" href="Altabyte.png">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2948115942129282" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --surface-color: #141414;
+      --accent-color: #00ffcc;
+      --text-main: #ffffff;
+      --text-muted: #a0a0a0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Space Mono', monospace;
+      line-height: 1.8;
+      padding: 0 20px;
+    }
+    .article-container { max-width: 800px; margin: 60px auto; }
+    .back-link {
+      display: inline-block;
+      color: var(--accent-color);
+      text-decoration: none;
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+    }
+    .back-link:hover { transform: translateX(-5px); }
+    .meta-tags { font-size: 0.85rem; color: var(--accent-color); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+    .meta-info { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+    .article-content p { margin-bottom: 25px; color: #e0e0e0; font-size: 1.05rem; }
+    .article-content strong { color: var(--accent-color); }
+    h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; color: var(--text-main); margin: 45px 0 20px 0; }
+    .tech-box { background-color: var(--surface-color); border-left: 3px solid var(--accent-color); padding: 20px; margin: 30px 0; border-radius: 0 8px 8px 0; }
+    .tech-box h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main); }
+    .tech-box p { margin-bottom: 0; font-size: 0.95rem; color: var(--text-muted); }
+    .code-block { background: #0a0a0a; border: 1px solid #1e2d2f; border-radius: 8px; padding: 20px; margin: 25px 0; overflow-x: auto; font-size: 0.85rem; color: #00ffcc; line-height: 1.6; }
+    .code-block .comment { color: #5a7a74; }
+    ul.article-list { list-style: none; padding: 0; margin: 0 0 25px 0; }
+    ul.article-list li { padding: 8px 0 8px 16px; color: #e0e0e0; font-size: 1.05rem; border-left: 2px solid var(--accent-color); margin-bottom: 10px; }
+    .ad-block { margin: 40px 0; }
+    footer { margin-top: 60px; border-top: 1px solid #222; padding-top: 30px; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+    .accent { color: var(--accent-color); }
+    .diagram-box { background: #0a0a0a; border: 1px solid #1e2d2f; border-radius: 8px; padding: 24px; margin: 25px 0; text-align: center; font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--accent-color); }
+    .diagram-box .layer { background: #141414; border: 1px solid #1e2d2f; border-radius: 6px; padding: 10px 20px; display: inline-block; margin: 4px; }
+    .diagram-box .arrow { color: #5a7a74; display: block; margin: 4px 0; }
+  </style>
+</head>
+<body>
+
+  <article class="article-container">
+    <a href="index.html" class="back-link">← Volver al portafolio</a>
+
+    <header>
+      <div class="meta-tags">// Android Dev &middot; Arquitectura &middot; Kotlin</div>
+      <h1>Por qué MVVM es el estándar de oro en Android: guía práctica con Kotlin</h1>
+      <div class="meta-info">
+        Por <span class="accent">GavDevCR</span> &middot; Junio 2026 &middot; Lectura de 7 min
+      </div>
+    </header>
+
+    <!-- AD superior -->
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2948115942129282"
+           data-ad-slot="AUTO"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <section class="article-content">
+      <p>
+        Si llevás tiempo desarrollando para Android, seguramente habrás escuchado sobre MVVM. Pero más allá de ser una sigla que aparece en la documentación de Google, es la diferencia entre una app que escala y una que se convierte en un laberinto de código ilegible. En este artículo te explico por qué MVVM es el patrón arquitectónico que deberías usar en todos tus proyectos Android con Kotlin, y cómo implementarlo paso a paso.
+      </p>
+
+      <h2>¿Qué es MVVM y por qué importa?</h2>
+      <p>
+        <strong>MVVM</strong> significa Model-View-ViewModel. Es un patrón de diseño que separa la aplicación en tres capas con responsabilidades bien definidas. El objetivo principal es uno solo: <strong>ninguna capa debe saber demasiado sobre las otras</strong>.
+      </p>
+
+      <div class="diagram-box">
+        <span class="layer">📱 View (Composables / Activities)</span>
+        <span class="arrow">↕ observa estado / envía eventos</span>
+        <span class="layer">🧠 ViewModel (lógica de UI)</span>
+        <span class="arrow">↕ solicita / recibe datos</span>
+        <span class="layer">📦 Repository (fuente de verdad)</span>
+        <span class="arrow">↕ consulta / escribe</span>
+        <span class="layer">🗄️ Room DB &nbsp;|&nbsp; 🌐 API REST</span>
+      </div>
+
+      <p>
+        La <strong>View</strong> (tu Activity, Fragment o Composable) solo se encarga de mostrar información y capturar acciones del usuario. El <strong>ViewModel</strong> procesa esas acciones, aplica lógica y expone el estado actualizado. El <strong>Model</strong> (Repository + fuentes de datos) se encarga de obtener y persistir la información, sin importarle quién la va a mostrar.
+      </p>
+
+      <h2>1. El ViewModel: donde vive la lógica de UI</h2>
+      <p>
+        El ViewModel es el componente más importante del patrón. Sobrevive los cambios de configuración del dispositivo (como rotar la pantalla), lo que significa que el usuario no pierde su estado al girar el teléfono. Usa <strong>StateFlow</strong> para exponer el estado de forma reactiva.
+      </p>
+
+      <div class="code-block">
+<span class="comment">// ViewModel básico con StateFlow</span>
+class TareasViewModel(private val repo: TareasRepository) : ViewModel() {
+
+    <span class="comment">// Estado privado (mutable, solo el ViewModel lo modifica)</span>
+    private val _uiState = MutableStateFlow(TareasUiState())
+    <span class="comment">// Estado público (solo lectura para la View)</span>
+    val uiState: StateFlow&lt;TareasUiState&gt; = _uiState.asStateFlow()
+
+    init {
+        cargarTareas()
+    }
+
+    private fun cargarTareas() {
+        viewModelScope.launch {
+            repo.getTareas().collect { tareas ->
+                _uiState.update { it.copy(tareas = tareas, isLoading = false) }
+            }
+        }
+    }
+
+    fun completar(tarea: Tarea) {
+        viewModelScope.launch {
+            repo.marcarCompletada(tarea.id)
+        }
+    }
+}
+
+<span class="comment">// Data class para representar el estado de la UI</span>
+data class TareasUiState(
+    val tareas: List&lt;Tarea&gt; = emptyList(),
+    val isLoading: Boolean = true,
+    val error: String? = null
+)
+      </div>
+
+      <!-- AD intermedio -->
+      <div class="ad-block">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2948115942129282"
+             data-ad-slot="AUTO"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2>2. La View: solo observa y reacciona</h2>
+      <p>
+        Con <strong>Jetpack Compose</strong>, la View se vuelve declarativa: describís <em>qué</em> mostrar según el estado, no <em>cómo</em> actualizar la pantalla. El sistema de recomposición de Compose se encarga de actualizar solo lo que cambió.
+      </p>
+
+      <div class="code-block">
+<span class="comment">// Composable que observa el ViewModel</span>
+@Composable
+fun TareasScreen(viewModel: TareasViewModel = viewModel()) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    when {
+        uiState.isLoading -> CircularProgressIndicator()
+        uiState.error != null -> ErrorMessage(uiState.error!!)
+        else -> TareasList(
+            tareas = uiState.tareas,
+            onCompletar = viewModel::completar
+        )
+    }
+}
+      </div>
+
+      <div class="tech-box">
+        <h3>collectAsStateWithLifecycle vs collectAsState</h3>
+        <p>
+          Siempre usá <strong>collectAsStateWithLifecycle()</strong> en lugar de <code>collectAsState()</code>. La primera respeta el ciclo de vida de Android y pausa la recolección cuando la app está en segundo plano, ahorrando batería y recursos del sistema.
+        </p>
+      </div>
+
+      <h2>3. El Repository: la única fuente de verdad</h2>
+      <p>
+        El Repository actúa como intermediario inteligente. El ViewModel no sabe si los datos vienen de una base de datos local, una API remota o una caché. Esa complejidad vive en el Repository, y así el código de UI permanece limpio.
+      </p>
+
+      <div class="code-block">
+<span class="comment">// Repository que combina Room DB y API remota</span>
+class TareasRepository(
+    private val dao: TareasDao,
+    private val api: TareasApiService
+) {
+    <span class="comment">// Siempre retorna los datos locales primero (offline-first)</span>
+    fun getTareas(): Flow&lt;List&lt;Tarea&gt;&gt; = dao.getAll()
+
+    suspend fun sincronizar() {
+        try {
+            val remotas = api.getTareas()
+            dao.insertAll(remotas.map { it.toEntity() })
+        } catch (e: IOException) {
+            <span class="comment">// Sin internet: los datos locales siguen funcionando</span>
+        }
+    }
+
+    suspend fun marcarCompletada(id: Int) {
+        dao.update(id, completada = true)
+    }
+}
+      </div>
+
+      <h2>4. Errores comunes que hay que evitar</h2>
+
+      <ul class="article-list">
+        <li><strong>Lógica de negocio en la View:</strong> si tu Composable tiene más de 3 líneas de lógica, esa lógica pertenece al ViewModel o Repository.</li>
+        <li><strong>Llamar a la base de datos desde la UI:</strong> Room opera en coroutines, nunca bloquees el hilo principal.</li>
+        <li><strong>MutableStateFlow público:</strong> exponé siempre el tipo inmutable (<code>StateFlow</code>), no el mutable.</li>
+        <li><strong>Un ViewModel por Activity gigante:</strong> creá ViewModels específicos por pantalla o funcionalidad para mantener la cohesión.</li>
+        <li><strong>Ignorar los ciclos de vida:</strong> usá <code>viewModelScope</code> para coroutines que deban cancelarse con el ViewModel.</li>
+      </ul>
+
+      <h2>5. ¿Vale la pena toda esta estructura para apps pequeñas?</h2>
+      <p>
+        Sí, y te explico por qué: el costo de configurar MVVM correctamente desde el inicio es mínimo comparado con refactorizar una app enredada semanas después. Además, cuando tu app crezca, agregar una nueva pantalla o funcionalidad será un proceso predecible y limpio en lugar de un rompecabezas.
+      </p>
+
+      <p>
+        Aplicar estos patrones en <strong>Flujo</strong>, mi app de finanzas personales, fue la decisión más importante del proyecto. Me permitió iterar rápidamente, agregar nuevas categorías de gasto sin tocar la UI, y mantener la lógica del balance calculado en un solo lugar confiable.
+      </p>
+
+      <div class="tech-box">
+        <h3>Regla de oro: si no podés hacer un test unitario sin instanciar la UI, tu arquitectura necesita trabajo</h3>
+        <p>
+          Una buena implementación de MVVM te permite escribir tests para el ViewModel y el Repository sin ningún componente de Android. Eso es código limpio, mantenible y profesional.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- AD final -->
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2948115942129282"
+           data-ad-slot="AUTO"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <footer>
+      <p>©<span class="accent">GavDevCR</span> · Desarrollando desde Costa Rica para el mundo.</p>
+      <p style="margin-top: 10px;">
+        <a href="como-gestionar-finanzas-personales-android.html" style="color: var(--accent-color); text-decoration: none;">← Artículo anterior</a>
+        &nbsp;|&nbsp;
+        <a href="index.html" style="color: var(--accent-color); text-decoration: none;">Volver al inicio →</a>
+      </p>
+    </footer>
+  </article>
+
+</body>
+</html>

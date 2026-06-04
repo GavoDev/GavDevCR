@@ -4,11 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="google-site-verification" content="FMyiUN1CGLLtSW-tND8xqjp-jHMpl1cTtxSNGP_S4CU" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GavDevCR — Android Developer</title>
+  <title>GavDevCR — Android Developer | Apps, Kotlin y Desarrollo Móvil</title>
+  <meta name="description" content="GavDevCR: desarrollador Android desde Costa Rica. Aprende Kotlin, Jetpack Compose, arquitectura MVVM y más. Artículos técnicos y apps publicadas en Play Store." />
   <link rel="icon" href="Altabyte.png">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css">
   <meta name="google-adsense-account" content="ca-pub-2948115942129282">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2948115942129282" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -20,8 +23,8 @@
     <ul class="nav-links">
       <li><a href="#about">Sobre mí</a></li>
       <li><a href="#apps">Mis Apps</a></li>
+      <li><a href="#blog">Blog</a></li>
       <li><a href="#contact">Contacto</a></li>
-      <li><a href="como-gestionar-finanzas-personales-android.html">Blog</a></li>
     </ul>
   </nav>
 
@@ -39,11 +42,12 @@
       </p>
       <div class="hero-cta">
         <a href="#apps" class="btn btn-primary">Ver mis apps</a>
-        <a href="#contact" class="btn btn-outline">Hablemos</a>
+        <a href="#blog" class="btn btn-outline">Leer el blog</a>
       </div>
     </div>
     <div class="scroll-hint">scroll para explorar</div>
   </section>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="reveal">
@@ -100,6 +104,17 @@
     </div>
   </section>
 
+  <!-- AD BANNER entre secciones (posición natural) -->
+  <div class="ad-section">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2948115942129282"
+         data-ad-slot="AUTO"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
   <!-- APPS -->
   <section id="apps">
     <div class="apps-inner">
@@ -122,46 +137,114 @@
           <p class="app-desc">
             Flujo es mi primera aplicación publicada en Google Play.
             Pensada para ayudarte a gestionar tus finanzas personales
-            de forma simple, visual y sin complicaciones.
+            de forma simple, visual y sin complicaciones. Construida con
+            Kotlin, Jetpack Compose y arquitectura MVVM para ofrecer
+            una experiencia fluida y confiable.
           </p>
           <div class="app-features">
             <div class="feature-item">Registro de ingresos y gastos</div>
             <div class="feature-item">Visualización clara de tu flujo de dinero</div>
             <div class="feature-item">Diseño limpio y fácil de usar</div>
             <div class="feature-item">Pensada para el usuario latinoamericano</div>
+            <div class="feature-item">Funciona sin conexión a internet</div>
+            <div class="feature-item">Persistencia segura con Room Database</div>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.avargas.flujo&pcampaignid=web_share" class="btn btn-primary">Ver en Play Store </a>
+          <a href="https://play.google.com/store/apps/details?id=com.avargas.flujo&pcampaignid=web_share" class="btn btn-primary" target="_blank" rel="noopener">Ver en Play Store</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="reveal">
+      <p class="section-label">// 03 — blog técnico</p>
+      <h2 class="section-title">Artículos &amp;<br>tutoriales</h2>
+      <p class="contact-sub">
+        Comparto lo que aprendo: arquitectura Android, Kotlin, buenas prácticas
+        y lecciones del mundo real del desarrollo móvil.
+      </p>
+    </div>
+
+    <div class="blog-grid reveal">
+
+      <article class="blog-card">
+        <div class="blog-card-meta">Android Dev &middot; Finanzas &middot; Mayo 2026</div>
+        <h3 class="blog-card-title">
+          <a href="como-gestionar-finanzas-personales-android.html">
+            Cómo gestionar finanzas personales desde Android: Arquitectura, Kotlin y código limpio
+          </a>
+        </h3>
+        <p class="blog-card-excerpt">
+          Construir una app de finanzas personales va más allá de mostrar números.
+          Requiere una gestión impecable del flujo de datos, persistencia local segura
+          con Room DB y una UI reactiva con Jetpack Compose que no confunda al usuario.
+          Te explico cómo lo resolví.
+        </p>
+        <div class="blog-card-tags">
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">MVVM</span>
+          <span class="skill-tag">Room DB</span>
+          <span class="skill-tag">Jetpack Compose</span>
+        </div>
+        <a href="como-gestionar-finanzas-personales-android.html" class="blog-read-more">Leer artículo →</a>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-meta">Android Dev &middot; Arquitectura &middot; Junio 2026</div>
+        <h3 class="blog-card-title">
+          <a href="arquitectura-mvvm-android-kotlin.html">
+            Por qué MVVM es el estándar de oro en Android: guía práctica con Kotlin
+          </a>
+        </h3>
+        <p class="blog-card-excerpt">
+          El patrón MVVM (Model-View-ViewModel) no es solo una sugerencia de Google —
+          es la columna vertebral de cualquier app Android moderna y escalable.
+          Entendé cómo separar responsabilidades correctamente, usar StateFlow
+          para observar estado y escribir código que sobreviva la rotación de pantalla.
+        </p>
+        <div class="blog-card-tags">
+          <span class="skill-tag">MVVM</span>
+          <span class="skill-tag">ViewModel</span>
+          <span class="skill-tag">StateFlow</span>
+          <span class="skill-tag">Coroutines</span>
+        </div>
+        <a href="arquitectura-mvvm-android-kotlin.html" class="blog-read-more">Leer artículo →</a>
+      </article>
+
+    </div>
+
+    <!-- AD dentro del blog (natural entre artículos) -->
+    <div class="ad-section reveal">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2948115942129282"
+           data-ad-slot="AUTO"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <div class="reveal">
-      <p class="section-label">// 03 — contacto</p>
+      <p class="section-label">// 04 — contacto</p>
       <h2 class="section-title">Trabajemos<br>juntos</h2>
       <p class="contact-sub">
         ¿Tenés un proyecto en mente o querés hablar sobre desarrollo Android?
         Escribime, siempre estoy abierto a nuevas ideas.
       </p>
-      <a href="mailto:hola@gavdevcr.com" class="btn btn-primary">avargasmy222@gmail.com</a>
-      <div class="social-links">
-        <!-- CONTACT 
-        <a href="#" class="social-link">GitHub</a>
-        <a href="#" class="social-link">LinkedIn</a>
-        <a href="#" class="social-link">Play Store</a>
-        <a href="#" class="social-link">Twitter / X</a>
-        CONTACT -->
-      </div>
+      <a href="mailto:avargasmy222@gmail.com" class="btn btn-primary">avargasmy222@gmail.com</a>
+      <div class="social-links"></div>
     </div>
   </section>
 
   <!-- FOOTER -->
- <footer>
+  <footer>
     <p>©<span class="accent">GavDevCR</span> · Costa Rica 🇨🇷</p>
     <p style="margin: 10px 0;">
-      <a href="politica-de-privacidad.html" style="color: #00ffcc; text-decoration: none; margin-right: 15px;">Política de Privacidad</a> | 
+      <a href="politica-de-privacidad.html" style="color: #00ffcc; text-decoration: none; margin-right: 15px;">Política de Privacidad</a> |
       <a href="terminos-y-condiciones.html" style="color: #00ffcc; text-decoration: none; margin-left: 15px;">Términos y Condiciones</a>
     </p>
     <p>Hecho con <span class="accent">❤</span> y mucho Kotlin</p>
