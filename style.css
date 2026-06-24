@@ -396,6 +396,55 @@ section { position: relative; z-index: 1; padding: 6rem 3rem; }
   font-size: .7rem;
 }
 
+/* ─── APPS GRID (multiple cards) ─── */
+.apps-inner { display: flex; flex-direction: column; gap: 2rem; }
+
+.app-icon-placeholder {
+  background: rgba(0,229,160,.08);
+  border: 1px solid rgba(0,229,160,.2);
+  display: flex; align-items: center; justify-content: center;
+}
+.app-icon-placeholder span {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 12px rgba(0,229,160,.5));
+}
+
+/* Game variant */
+.app-visual-game {
+  background: linear-gradient(135deg, #1a0a2e 0%, #2d0050 50%, #0d001a 100%);
+}
+.app-visual-game::before {
+  background: radial-gradient(circle at 50% 50%, rgba(180,0,255,.15) 0%, transparent 70%);
+}
+.app-badge-game {
+  color: #c084fc;
+  background: rgba(180,0,255,.1);
+  border: 1px solid rgba(180,0,255,.3);
+}
+
+/* Coming soon variant */
+.app-card-soon {
+  opacity: .88;
+  border-style: dashed;
+}
+.app-visual-soon {
+  background: linear-gradient(135deg, #1a1a0a 0%, #2a2500 50%, #111100 100%);
+}
+.app-visual-soon::before {
+  background: radial-gradient(circle at 50% 50%, rgba(255,200,0,.12) 0%, transparent 70%);
+}
+.app-badge-soon {
+  color: #fbbf24;
+  background: rgba(255,200,0,.1);
+  border: 1px solid rgba(255,200,0,.3);
+  animation: none;
+}
+.btn-soon {
+  opacity: .7;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* ─── CONTACT ─── */
 #contact { max-width: 1100px; margin: 0 auto; text-align: center; }
 .contact-sub {
