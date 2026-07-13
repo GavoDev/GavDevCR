@@ -22,6 +22,23 @@ body {
   cursor: none;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  z-index: 200;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: .75rem;
+  padding: .6rem .9rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
 /* ─── CURSOR ─── */
 .cursor {
   position: fixed;
@@ -77,6 +94,15 @@ nav {
   transition: color .2s;
 }
 .nav-links a:hover { color: var(--accent); }
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.social-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 
 /* ─── HERO ─── */
 #hero {
@@ -301,6 +327,14 @@ section { position: relative; z-index: 1; padding: 6rem 3rem; }
 /* ─── APP SHOWCASE ─── */
 #apps { background: var(--surface); }
 .apps-inner { max-width: 1100px; margin: 0 auto; }
+.apps-intro {
+  font-family: var(--mono);
+  font-size: .86rem;
+  color: var(--muted);
+  max-width: 720px;
+  line-height: 1.8;
+  margin-top: .8rem;
+}
 .app-card {
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -491,6 +525,12 @@ footer p {
   letter-spacing: .08em;
 }
 footer .accent { color: var(--accent); }
+footer .footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 /* ─── REVEAL ANIMATION ─── */
 .reveal {
@@ -520,6 +560,15 @@ footer .accent { color: var(--accent); }
   nav {
     padding: 1rem 1.2rem;
     gap: .8rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
   .nav-logo { font-size: .78rem; }
   .nav-links { gap: .6rem; flex-wrap: wrap; justify-content: flex-end; }
@@ -596,6 +645,9 @@ footer .accent { color: var(--accent); }
     flex-direction: column;
     text-align: center;
     gap: .5rem;
+  }
+  .footer-links {
+    justify-content: center;
   }
 }
 
