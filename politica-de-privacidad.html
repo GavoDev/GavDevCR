@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Política de privacidad | GavDevCR</title>
   <meta name="description" content="Política de privacidad de GavDevCR: uso de cookies, publicidad de terceros (Google AdSense), analítica y derechos del usuario." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="es_CR" />
+  <meta property="og:site_name" content="GavDevCR" />
+  <meta property="og:title" content="Política de privacidad | GavDevCR" />
+  <meta property="og:description" content="Política de privacidad del sitio GavDevCR sobre cookies, publicidad y derechos del usuario." />
+  <meta property="og:url" content="https://altabyte360.com/politica-de-privacidad.html" />
+  <meta property="og:image" content="https://altabyte360.com/Altabyte.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Política de privacidad | GavDevCR" />
+  <meta name="twitter:description" content="Detalles de privacidad, cookies, enlaces a terceros y contacto del sitio." />
+  <meta name="twitter:image" content="https://altabyte360.com/Altabyte.png" />
   <link rel="canonical" href="https://altabyte360.com/politica-de-privacidad.html" />
   <link rel="icon" href="Altabyte.png" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
@@ -16,6 +29,7 @@
     .top-links, .footer-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
     h1, h2 { font-family: 'Syne', sans-serif; line-height: 1.2; margin: 0; }
     h1 { font-size: clamp(2rem, 5vw, 2.7rem); margin-bottom: 12px; }
     h2 { font-size: 1.35rem; margin: 30px 0 10px; }
@@ -25,10 +39,13 @@
     .muted { color: var(--muted); font-size: .9rem; }
     .box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
     footer { border-top: 1px solid var(--border); margin-top: 42px; padding-top: 20px; }
+    .skip-link { position: absolute; left: 20px; top: -40px; background: var(--accent); color: #000; padding: 8px 10px; border-radius: 6px; z-index: 100; }
+    .skip-link:focus { top: 12px; }
   </style>
 </head>
 <body>
-  <main class="page">
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  <main class="page" id="main-content">
     <nav class="top-links" aria-label="Navegación principal">
       <a href="index.html">Inicio</a>
       <a href="about.html">Sobre el sitio</a>
@@ -65,8 +82,8 @@
       <p>Este sitio puede mostrar anuncios de <strong>Google AdSense</strong>. Google y sus socios pueden usar cookies para personalizar anuncios según visitas previas a este y otros sitios.</p>
       <p>Más información y controles:</p>
       <ul>
-        <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Cómo Google usa la información en sitios con publicidad</a>.</li>
-        <li><a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Configuración de anuncios de Google</a>.</li>
+        <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Cómo Google usa la información en sitios con publicidad</a>.</li>
+        <li><a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Configuración de anuncios de Google</a>.</li>
       </ul>
       <p>El uso de publicidad se realiza respetando políticas vigentes de AdSense, sin prácticas engañosas ni incentivos artificiales de clics.</p>
     </section>

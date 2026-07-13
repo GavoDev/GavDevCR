@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Por qué MVVM es el estándar de oro en Android: guía práctica con Kotlin — GavDevCR</title>
   <meta name="description" content="Aprende a implementar el patrón MVVM en Android con Kotlin: ViewModel, StateFlow, Repository y Jetpack. Guía técnica práctica con ejemplos de código reales." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="es_CR" />
+  <meta property="og:site_name" content="GavDevCR" />
+  <meta property="og:title" content="Por qué MVVM es el estándar de oro en Android — GavDevCR" />
+  <meta property="og:description" content="Guía práctica de MVVM en Android con Kotlin, ViewModel, StateFlow y Repository." />
+  <meta property="og:url" content="https://altabyte360.com/arquitectura-mvvm-android-kotlin.html" />
+  <meta property="og:image" content="https://altabyte360.com/Altabyte.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MVVM en Android con Kotlin — GavDevCR" />
+  <meta name="twitter:description" content="Patrón MVVM explicado con enfoque práctico para apps Android modernas." />
+  <meta name="twitter:image" content="https://altabyte360.com/Altabyte.png" />
   <link rel="canonical" href="https://altabyte360.com/arquitectura-mvvm-android-kotlin.html" />
   <link rel="icon" href="Altabyte.png">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
@@ -36,6 +49,7 @@
       transition: transform 0.2s;
     }
     .back-link:hover { transform: translateX(-5px); }
+    a:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 3px; border-radius: 4px; }
     .meta-tags { font-size: 0.85rem; color: var(--accent-color); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
     h1 { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
     .meta-info { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 20px; }
@@ -55,11 +69,14 @@
     .diagram-box { background: #0a0a0a; border: 1px solid #1e2d2f; border-radius: 8px; padding: 24px; margin: 25px 0; text-align: center; font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--accent-color); }
     .diagram-box .layer { background: #141414; border: 1px solid #1e2d2f; border-radius: 6px; padding: 10px 20px; display: inline-block; margin: 4px; }
     .diagram-box .arrow { color: #5a7a74; display: block; margin: 4px 0; }
+    .skip-link { position: absolute; left: 20px; top: -40px; background: var(--accent-color); color: #000; padding: 8px 10px; border-radius: 6px; z-index: 100; font-weight: 700; text-decoration: none; }
+    .skip-link:focus { top: 12px; }
   </style>
 </head>
 <body>
 
-  <article class="article-container">
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  <article class="article-container" id="main-content">
     <a href="index.html" class="back-link">← Volver al portafolio</a>
 
     <header>
