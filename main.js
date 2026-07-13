@@ -1,13 +1,16 @@
 // ─── CUSTOM CURSOR ───
 const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top  = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .stat-card, .skill-tag').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('big'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
-});
+const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+if (cursor && isFinePointer) {
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .stat-card, .skill-tag').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+}
 
 // ─── SCROLL REVEAL ───
 const reveals = document.querySelectorAll('.reveal');
@@ -48,9 +51,11 @@ document.querySelectorAll('.stats-grid').forEach(el => countObserver.observe(el)
 // ─── PARALLAX HERO CIRCLES ───
 const c1 = document.querySelector('.hero-bg-circle.c1');
 const c2 = document.querySelector('.hero-bg-circle.c2');
-document.addEventListener('mousemove', e => {
-  const x = (e.clientX / window.innerWidth - .5) * 20;
-  const y = (e.clientY / window.innerHeight - .5) * 20;
-  c1.style.transform = `translate(${x}px, ${y}px)`;
-  c2.style.transform = `translate(${-x * .6}px, ${-y * .6}px)`;
-});
+if (c1 && c2 && isFinePointer) {
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth - .5) * 20;
+    const y = (e.clientY / window.innerHeight - .5) * 20;
+    c1.style.transform = `translate(${x}px, ${y}px)`;
+    c2.style.transform = `translate(${-x * .6}px, ${-y * .6}px)`;
+  });
+}

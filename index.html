@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GavDevCR — Android Developer | Apps, Kotlin y Desarrollo Móvil</title>
   <meta name="description" content="GavDevCR: desarrollador Android desde Costa Rica. Aprende Kotlin, Jetpack Compose, arquitectura MVVM y más. Artículos técnicos y apps publicadas en Play Store." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0a0e0f" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CR" />
+  <meta property="og:site_name" content="GavDevCR" />
+  <meta property="og:title" content="GavDevCR — Android Developer | Apps, Kotlin y Desarrollo Móvil" />
+  <meta property="og:description" content="Desarrollador Android en Costa Rica. Apps publicadas, artículos técnicos y buenas prácticas con Kotlin, Compose y MVVM." />
+  <meta property="og:url" content="https://altabyte360.com/" />
+  <meta property="og:image" content="https://altabyte360.com/Altabyte.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GavDevCR — Android Developer" />
+  <meta name="twitter:description" content="Apps Android, Kotlin, arquitectura MVVM y contenido técnico desde Costa Rica." />
+  <meta name="twitter:image" content="https://altabyte360.com/Altabyte.png" />
   <link rel="canonical" href="https://altabyte360.com/" />
   <link rel="icon" href="Altabyte.png">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
@@ -16,10 +29,11 @@
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
 
   <!-- NAV -->
-  <nav>
+  <nav aria-label="Navegación principal">
     <span class="nav-logo">GavDevCR_</span>
     <ul class="nav-links">
       <li><a href="#apps">Mis Apps</a></li>
@@ -30,9 +44,10 @@
     </ul>
   </nav>
 
+  <main id="main-content">
   <section id="hero">
-    <div class="hero-bg-circle c1"></div>
-    <div class="hero-bg-circle c2"></div>
+    <div class="hero-bg-circle c1" aria-hidden="true"></div>
+    <div class="hero-bg-circle c2" aria-hidden="true"></div>
     <div class="hero-inner">
       <p class="hero-tag">// Android Developer &middot; Costa Rica 🇨🇷</p>
       <h1 class="hero-name">
@@ -47,7 +62,7 @@
         <a href="#blog" class="btn btn-outline">Leer el blog</a>
       </div>
     </div>
-    <div class="scroll-hint">scroll para explorar</div>
+    <div class="scroll-hint" aria-hidden="true">scroll para explorar</div>
   </section>
 
   <!-- ABOUT -->
@@ -131,7 +146,7 @@
         <div class="app-visual">
           <div class="app-icon-wrap">
             <div class="app-icon">
-              <img src="flujo-icon.png" alt="Flujo App Icon" />
+              <img src="flujo-icon.png" alt="Flujo App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge">YA DISPONIBLE EN PLAY STORE</span>
           </div>
@@ -154,7 +169,7 @@
             <div class="feature-item">Funciona sin conexión a internet</div>
             <div class="feature-item">Persistencia segura con Room Database</div>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.avargas.flujo&pcampaignid=web_share" class="btn btn-primary" target="_blank" rel="noopener">Ver en Play Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.avargas.flujo&pcampaignid=web_share" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
         </div>
       </div>
 
@@ -175,12 +190,12 @@
             <div class="feature-item">Bajo consumo de recursos</div>
             <div class="feature-item">Sin permisos innecesarios</div>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.app.silencioapp" class="btn btn-primary" target="_blank" rel="noopener">Ver en Play Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.app.silencioapp" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
         </div>
         <div class="app-visual">
           <div class="app-icon-wrap">
             <div class="app-icon">
-              <img src="https://play-lh.googleusercontent.com/VmrdQWz3ZwmOGa0EfY4XIp820fONh91BVOpTjzce-G8d917hF3lgtZOJOCddOr7fshbYN8ZWDiHN7aHFZWgjug=w480-h960" alt="Silencio App Icon" />
+              <img src="https://play-lh.googleusercontent.com/VmrdQWz3ZwmOGa0EfY4XIp820fONh91BVOpTjzce-G8d917hF3lgtZOJOCddOr7fshbYN8ZWDiHN7aHFZWgjug=w480-h960" alt="Silencio App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge">YA DISPONIBLE EN PLAY STORE</span>
           </div>
@@ -192,7 +207,7 @@
         <div class="app-visual">
           <div class="app-icon-wrap">
             <div class="app-icon">
-              <img src="https://play-lh.googleusercontent.com/uH_zsyPCJAzTubUqx0x-V1sboGlOZoPPa2QRaBG9DTXjFgrJA_HcUuuGQeqmS1_3tMdzMQG4pVWnrPkS2i2mpx0=w480-h960" alt="Silencio App Icon" />
+              <img src="https://play-lh.googleusercontent.com/uH_zsyPCJAzTubUqx0x-V1sboGlOZoPPa2QRaBG9DTXjFgrJA_HcUuuGQeqmS1_3tMdzMQG4pVWnrPkS2i2mpx0=w480-h960" alt="Nexus App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge">YA DISPONIBLE EN PLAY STORE</span>
           </div>
@@ -211,7 +226,7 @@
             <div class="feature-item">Experiencia de usuario fluida</div>
             <div class="feature-item">Optimizada para rendimiento</div>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.application.nexusapp" class="btn btn-primary" target="_blank" rel="noopener">Ver en Play Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.application.nexusapp" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
         </div>
       </div>
 
@@ -232,12 +247,12 @@
             <div class="feature-item">Perfil personalizado por mascota</div>
             <div class="feature-item">Interfaz amigable e intuitiva</div>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.aurapet.app" class="btn btn-primary" target="_blank" rel="noopener">Ver en Play Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.aurapet.app" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
         </div>
         <div class="app-visual">
           <div class="app-icon-wrap">
           <div class="app-icon">
-              <img src="https://play-lh.googleusercontent.com/IlKLaPUvCb-8QLlumZXToLEmjTRXrN6EWdFQVwd5ZsejP6bgFgND5cjkSS4pZ3UZbTxW1jXDZz851U7ruBFqTdQ=w480-h960" alt="Silencio App Icon" />
+              <img src="https://play-lh.googleusercontent.com/IlKLaPUvCb-8QLlumZXToLEmjTRXrN6EWdFQVwd5ZsejP6bgFgND5cjkSS4pZ3UZbTxW1jXDZz851U7ruBFqTdQ=w480-h960" alt="AuraPet App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge">YA DISPONIBLE EN PLAY STORE</span>
           </div>
@@ -249,7 +264,7 @@
         <div class="app-visual">
           <div class="app-icon-wrap">
             <div class="app-icon">
-              <img src="https://play-lh.googleusercontent.com/v4be4gRydg4vxeewK8g20RC3Dvyq91WBMzgw9XCd6WiSD6tOa4lsQorCxjbbJyCQEiiNYD2B8E9cOveQ5P7FJ4c=w480-h960" alt="LogDay App Icon" />
+              <img src="https://play-lh.googleusercontent.com/v4be4gRydg4vxeewK8g20RC3Dvyq91WBMzgw9XCd6WiSD6tOa4lsQorCxjbbJyCQEiiNYD2B8E9cOveQ5P7FJ4c=w480-h960" alt="LogDay App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge">YA DISPONIBLE EN PLAY STORE</span>
           </div>
@@ -273,7 +288,7 @@
             <div class="feature-item">Interfaz oscura y minimalista</div>
             <div class="feature-item">LogDay Pro: sin anuncios + exportar PDF</div>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.avrgas.logday" class="btn btn-primary" target="_blank" rel="noopener">Ver en Play Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.avrgas.logday" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
         </div>
       </div>
 
@@ -288,7 +303,7 @@
         <div class="app-visual app-visual-game">
           <div class="app-icon-wrap">
             <div class="app-icon">
-              <img src="https://play-lh.googleusercontent.com/uZcJF_Ik_TIefjgskc4SSCDL4zr3Wbxd-zRb38GBcqxlFn3ShPbF3yX_TA3i0lLpLxJirWTrKOvYmqtQBTrROrk=w480-h960" alt="Silencio App Icon" />
+              <img src="https://play-lh.googleusercontent.com/uZcJF_Ik_TIefjgskc4SSCDL4zr3Wbxd-zRb38GBcqxlFn3ShPbF3yX_TA3i0lLpLxJirWTrKOvYmqtQBTrROrk=w480-h960" alt="ChromaShift App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge app-badge-game">JUEGO · PLAY STORE</span>
           </div>
@@ -307,7 +322,7 @@
             <div class="feature-item">Diseño visual vibrante</div>
             <div class="feature-item">Ideal para partidas cortas</div>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.avargas.chromashift2" class="btn btn-primary" target="_blank" rel="noopener">Ver en Play Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.avargas.chromashift2" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
         </div>
       </div>
 
@@ -328,12 +343,12 @@
             <div class="feature-item">Efectos visuales dinámicos</div>
             <div class="feature-item">Partidas cortas y rejugables</div>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.avargas.thunders" class="btn btn-primary" target="_blank" rel="noopener">Ver en Play Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.avargas.thunders" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver en Play Store</a>
         </div>
         <div class="app-visual app-visual-game">
           <div class="app-icon-wrap">
             <div class="app-icon">
-              <img src="https://play-lh.googleusercontent.com/7WtZ8IyHSVrKykdnV4xlfOuP9RQtujjesKywgkGZAwPJPA7xTRZeP4NSM78tmLazI5ECOL-LV-48mW5p8lCPLA=w480-h960" alt="Silencio App Icon" />
+              <img src="https://play-lh.googleusercontent.com/7WtZ8IyHSVrKykdnV4xlfOuP9RQtujjesKywgkGZAwPJPA7xTRZeP4NSM78tmLazI5ECOL-LV-48mW5p8lCPLA=w480-h960" alt="Thunders App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge app-badge-game">JUEGO · PLAY STORE</span>
           </div>
@@ -351,7 +366,7 @@
         <div class="app-visual app-visual-soon">
           <div class="app-icon-wrap">
             <div class="app-icon">
-              <img src="https://lh3.googleusercontent.com/mISbYiSqinF-NnygGMGATQXWfG6CZRKTG_eBCV_M686StTPfKkBYz-hYeEulJZ9C04f3Yg-zGsQ0DRxkUOJYd04" alt="Cosmos View App Icon" />
+              <img src="https://lh3.googleusercontent.com/mISbYiSqinF-NnygGMGATQXWfG6CZRKTG_eBCV_M686StTPfKkBYz-hYeEulJZ9C04f3Yg-zGsQ0DRxkUOJYd04" alt="Cosmos View App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge app-badge-soon">PRUEBA CERRADA</span>
           </div>
@@ -364,7 +379,7 @@
             Si querés probarla antes de su lanzamiento oficial, unite al programa
             de testers desde el link de abajo.
           </p>
-          <a href="https://play.google.com/apps/testing/com.avargas.cosmos_view" class="btn btn-outline btn-soon" target="_blank" rel="noopener">Unirme a la prueba cerrada</a>
+          <a href="https://play.google.com/apps/testing/com.avargas.cosmos_view" class="btn btn-outline btn-soon" target="_blank" rel="noopener noreferrer">Unirme a la prueba cerrada</a>
         </div>
       </div>
 
@@ -373,7 +388,7 @@
         <div class="app-visual app-visual-soon">
           <div class="app-icon-wrap">
             <div class="app-icon">
-              <img src="https://lh3.googleusercontent.com/yVnrRk5uUW3asF2lL1N61D8YXcSJwiD3Rqv_sUKks7YXZeafWVaYKaYnLaJ-_Ez8hYy0g5XBSOcet6Bewubciw" alt="NeonLoop App Icon" />
+              <img src="https://lh3.googleusercontent.com/yVnrRk5uUW3asF2lL1N61D8YXcSJwiD3Rqv_sUKks7YXZeafWVaYKaYnLaJ-_Ez8hYy0g5XBSOcet6Bewubciw" alt="NeonLoop App Icon" loading="lazy" decoding="async" />
             </div>
             <span class="app-badge app-badge-soon">JUEGO · PRUEBA CERRADA</span>
           </div>
@@ -386,7 +401,7 @@
             Unite al programa de testers para probarlo antes que nadie y ayudarme
             a pulirlo antes del lanzamiento.
           </p>
-          <a href="https://play.google.com/apps/testing/com.avargas.neonloop" class="btn btn-outline btn-soon" target="_blank" rel="noopener">Unirme a la prueba cerrada</a>
+          <a href="https://play.google.com/apps/testing/com.avargas.neonloop" class="btn btn-outline btn-soon" target="_blank" rel="noopener noreferrer">Unirme a la prueba cerrada</a>
         </div>
       </div>
 
@@ -477,6 +492,7 @@
       <div class="social-links"></div>
     </div>
   </section>
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -490,6 +506,6 @@
     <p>Hecho con <span class="accent">❤</span> y mucho Kotlin</p>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
